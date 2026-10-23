@@ -1,0 +1,25 @@
+---
+description: Split between deterministic scripts and agent judgment; append-only event log
+alwaysApply: true
+---
+
+# Scripts are the hands, the agent is the brain
+
+| Scripts (`jobagent ...`) | Agent |
+|---|---|
+| Fetch boards, filter, render PDFs, validate, log events, push to phone | Score fit, pick lane, reword bullets, write cover letters, classify email |
+
+- The agent calls `jobagent` commands and reads their output. It does not hand-write HTTP calls, PDFs, or event rows.
+- If a step is repeatable and needs no judgment, it belongs in a script with a test.
+
+## Event log
+
+- `data/events/*.csv` is append-only. Never edit or delete a row. A correction is a new event.
+- One file per run: `data/events/<YYYY-MM-DDTHHMM>_<run>.csv`. Runs never share a file.
+- Every event has `at, job_id, type, detail_json, run_id`.
+- Current status is derived (latest event per job), never stored.
+
+## Daily goal
+
+- The goal is 30 packets per weekday. The score threshold (70) is never lowered to reach it.
+- If fewer than 30 jobs pass, log `supply_short` with the count. The dashboard shows it.

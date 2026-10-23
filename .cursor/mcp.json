@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "jobagent": {
+      "command": "docker",
+      "args": [
+        "compose", "-f", "${workspaceFolder}/docker-compose.yml",
+        "run", "--rm", "--no-deps", "-T", "worker", "jobagent-mcp"
+      ]
+    },
+    "playwright": {
+      "url": "http://127.0.0.1:8931/mcp"
+    },
+    "openwebninja": {
+      "command": "docker",
+      "args": [
+        "compose", "-f", "${workspaceFolder}/docker-compose.yml",
+        "--profile", "research", "run", "--rm", "--no-deps", "-T", "openwebninja"
+      ]
+    }
+  }
+}

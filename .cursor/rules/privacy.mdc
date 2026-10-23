@@ -1,0 +1,12 @@
+---
+description: Keep personal data and secrets out of public places
+alwaysApply: true
+---
+
+# Privacy
+
+- The repo is private. It holds a phone number, visa status, and salary answers.
+- Secrets (ntfy topic, API tokens) live in `.env`, which is gitignored. Never commit `.env` or paste a secret into a file, log, or chat.
+- Phone pushes contain company, title, and score only. No salary, visa, or contact details.
+- Saved job descriptions in `data/jobs/` are fine to commit. Screenshots of filled forms stay in `out/<job_id>/` in the private repo only.
+- Never upload anything from `profile/` to a third-party service other than the job application it was tailored for.

@@ -1,0 +1,72 @@
+# Project fact bank. Skills here may appear in Projects and Skills, never in a work bullet.
+# lanes: which resume lanes may show the project. A = Analytics Engineer, B = Data/BI Analyst, C = ML-adjacent (off for now).
+
+projects:
+  - id: proj-mbta
+    name: MBTA Operations Command
+    year: 2026
+    url: github.com/Harshal12355/MBTA-Visualiser---Predictor
+    lanes: [A, B]
+    bullets:
+      - id: proj-mbta-1
+        text: Ingested Boston's live GTFS-Realtime vehicle feed into fact tables and built dbt-style staging and marts for route reliability, stop reliability, and bus bunching hotspots
+        skills: [Python, SQL, dbt, SQLite, GTFS-Realtime]
+        numbers: []
+        status: confirmed
+        evidence: [city-fleet-command/dbt/models/marts/mart_route_reliability.sql, city-fleet-command/backend/gtfs_realtime.py]
+
+  - id: proj-mtg
+    name: MTG Deck Builder MCP Server
+    year: 2026
+    url: github.com/Harshal12355/MTG-Deck-Builder-MCP
+    lanes: [A, B]
+    bullets:
+      - id: proj-mtg-1
+        text: Built a Python MCP server with 20+ tools over four public APIs (Scryfall, EDHREC, Commander Spellbook, Archidekt) for deck analysis and Monte Carlo simulation, tested in GitHub Actions and packaged with Docker
+        skills: [Python, REST APIs, MCP, GitHub Actions, Docker, simulation]
+        numbers: ["20+"]
+        status: confirmed
+        evidence: [README.md, src/mtg_mcp/goldfish.py, .github/workflows/tests.yml, Dockerfile]
+
+  - id: proj-lrcn
+    name: Sign Language Video Classification
+    year: 2025
+    url: github.com/Harshal12355/Sign-Language-Video-Classification-with-LRCN
+    lanes: [C]
+    bullets:
+      - id: proj-lrcn-1
+        text: Trained LRCN and ConvLSTM video classifiers in PyTorch on MediaPipe keypoints, tracking experiments in MLflow
+        skills: [PyTorch, MediaPipe, OpenCV, MLflow]
+        numbers: []
+        status: needs_review   # 90.43% test accuracy appears on old resumes; confirm before using
+        evidence: [train.py, models/lrcn.py]
+
+  - id: proj-airflow
+    name: Financial Data Pipeline
+    year: 2025
+    url: github.com/Harshal12355/Financial-Data-Pipeline
+    lanes: [A, B, C]
+    bullets:
+      - id: proj-airflow-1
+        text: Scheduled stock and churn data pipelines as Airflow DAGs running in Docker Compose
+        skills: [Airflow, Docker, Python]
+        numbers: []
+        status: confirmed
+        evidence: [dags/stock_pipeline.py, dags/churn_pipeline.py, docker-compose.yml]
+
+  - id: proj-dcgan
+    name: DCGAN Representation Learning
+    year: 2024
+    url: github.com/Harshal12355/Unsupervised-Representation-Learning-with-DCGAN
+    lanes: [C]
+    bullets:
+      - id: proj-dcgan-1
+        text: Implemented and trained a DCGAN in PyTorch
+        skills: [PyTorch]
+        numbers: []
+        status: confirmed
+        evidence: [dcgan_model.py, train.py]
+
+# Removed from all lanes:
+# - Automated YouTube Analytics Pipeline: old resumes claim Airflow, Spark, Kubernetes; the repo has no Airflow code.
+# - Anything from Indus Novateur: not a real employer.

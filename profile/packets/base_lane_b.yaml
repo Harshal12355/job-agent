@@ -1,0 +1,73 @@
+# Base resume packet, lane B (Data / BI Analyst).
+lane: B
+template_version: resume-v1
+
+name: Harshal Shinoy Thachapully
+headline: Analytics · SQL · dbt · Sigma
+contact:
+  - harshal.thachapully@gmail.com
+  - +1 857-208-4576
+  - linkedin.com/in/harshal-t
+  - github.com/Harshal12355
+  - Open to US relocation
+
+summary: >-
+  Data scientist who answers "why do these two numbers disagree?" for a living. Builds trusted metrics in SQL,
+  dbt, and Snowflake, serves them in Sigma dashboards, and writes down what each number refuses to mean.
+
+experience:
+  - company: OpenTug
+    title: Data Scientist
+    location: Boston, MA
+    dates: Oct 2025 – Present
+    bullets:
+      - source: otug-recon
+        text: Traced a dollars-per-barrel gap between an estimate chart and a billed chart to a product-desk label and to charges stored on the row but left out of the sum, and fixed the definition before building new models
+      - source: otug-util
+        text: Defined time-charter utilization (productive time over hire time) across 9 dbt models and 18 tests, and documented why dropping unscored empty voyages from the average flatters the fleet
+      - source: otug-money
+        text: Added estimates, invoices, fuel purchases, and allocated charges to the voyage table, keeping quotes and bills separate so a savings metric cannot quietly compare a quote to itself
+      - source: otug-voyage-table
+        text: Designed a customer-facing voyage table at one-row-per-voyage grain, served to Sigma dashboards with row-access policies so each customer sees only their own voyages
+      - source: otug-operator
+        text: Shipped a KPI pack for a petroleum barge operator (laden and empty transit, dock delay, pump rate, remaining on board, deadfreight, standby), each with a declared grain and a dbt test
+      - source: otug-clocks
+        text: Built voyage clocks from crew event logs (hose, tankerman, inspector, fleeting, idle, port wait), pairing events per barge and merging overlaps so a two-barge tow is not double-counted
+      - source: otug-ci
+        text: Cut dbt pull-request CI from about 32 minutes to about 6 with a nightly full build, a cached manifest, and slim rebuilds of only what changed
+
+  - company: C The Signs
+    title: Data Scientist Intern
+    location: Boston, MA
+    dates: Jan 2024 – Jun 2024
+    bullets:
+      - source: cts-dbt
+        text: Built dbt and Snowflake transformations over 95M+ electronic health records, turning sparse, irregular patient histories into analysis-ready temporal features
+
+projects:
+  - name: MBTA Operations Command
+    url: github.com/Harshal12355/MBTA-Visualiser---Predictor
+    bullets:
+      - source: proj-mbta-1
+        text: Ingested Boston's live GTFS-Realtime vehicle feed into fact tables and built dbt-style marts for route reliability, stop reliability, and bus bunching hotspots
+
+education:
+  - school: Northeastern University
+    degree: M.S. Data Science (GPA 3.89)
+    detail: Graduate Teaching Assistant, Generative AI (Sep 2023 – Dec 2024)
+    location: Boston, MA
+    dates: Jan 2023 – May 2025
+  - school: Heriot-Watt University
+    degree: B.S. Computer Science (GPA 3.7)
+    location: Dubai, UAE
+    dates: Sep 2019 – May 2022
+
+skills:
+  - label: Analysis
+    items: [SQL (window functions, event pairing), metric definitions, reconciliation, KPI design]
+  - label: BI and warehouse
+    items: [Sigma, Snowflake, dbt Core (tests, semantic views), dimensional modeling]
+  - label: Engineering
+    items: [Python, GitHub Actions, Docker]
+  - label: Also used in projects
+    items: [Airflow, PyTorch]

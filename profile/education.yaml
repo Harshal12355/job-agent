@@ -1,0 +1,18 @@
+education:
+  - id: edu-neu
+    school: Northeastern University
+    degree: M.S. Data Science
+    location: Boston, MA
+    start: 2023-01
+    end: 2025-05
+    gpa: "3.89"
+    status: confirmed
+
+  - id: edu-hw
+    school: Heriot-Watt University
+    degree: B.S. Computer Science
+    location: Dubai, UAE
+    start: 2019-09
+    end: 2022-05
+    gpa: "3.7"
+    status: confirmed

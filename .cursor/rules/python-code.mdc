@@ -1,0 +1,28 @@
+---
+description: Python conventions for the jobagent package and tests
+globs: src/**/*.py,tests/**/*.py
+alwaysApply: false
+---
+
+# Python
+
+- Python 3.12+, managed with `uv`. Add deps with `uv add`, never by editing a lockfile.
+- HTTP with `httpx`. Every network call has a timeout and goes through one client in `src/jobagent/http.py`.
+- Lint and format with `ruff`. Type hints on public functions.
+- CLI entry points live in `src/jobagent/cli.py` and return a non-zero exit code on failure.
+- Board adapters return the same `Job` dataclass, whichever board they read.
+
+## Tests
+
+- `pytest`. Tests never touch the network: board responses are JSON fixtures in `tests/fixtures/`.
+- The validator gets the most tests. Every rule in `truth-first.mdc` has a test with a packet that must fail.
+
+```python
+def test_rejects_number_not_in_source(fact_bank):
+    packet = make_packet(source="otug-ais", text="Matched 99% of dwells")
+    assert validate(packet, fact_bank).errors == ["otug-ais: number '99%' not in source"]
+```
+
+## Lint scope
+
+Fix lint only in lines you change. No drive-by reformatting or `# noqa` in untouched code.

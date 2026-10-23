@@ -1,0 +1,30 @@
+# Form answers. Only Harshal fills these in. The agent never guesses one.
+# A required form question with no answer here sends the job to the manual queue.
+
+contact:
+  name: Harshal Shinoy Thachapully
+  email: harshal.thachapully@gmail.com
+  phone: "+1 857-208-4576"
+  linkedin: linkedin.com/in/harshal-t
+  github: github.com/Harshal12355
+  current_city: null          # TODO
+
+work_authorization:
+  authorized_to_work_in_us: null   # TODO
+  requires_sponsorship_now: null   # TODO
+  requires_sponsorship_future: null  # TODO
+  form_wording: null               # TODO, e.g. "F-1 STEM OPT; will need H-1B sponsorship"
+
+compensation:
+  salary_floor_usd: null      # TODO
+  salary_answer_text: null    # TODO, e.g. "Open, targeting the posted range"
+
+logistics:
+  willing_to_relocate: true
+  earliest_start: null        # TODO, e.g. "2 weeks after offer"
+
+eeo:                          # each can be "Decline to answer"
+  gender: null
+  race_ethnicity: null
+  veteran_status: null
+  disability_status: null

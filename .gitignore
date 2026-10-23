@@ -1,0 +1,10 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+out/**/*.png
+# Live on the Mac mini; backed up nightly to the private data repo by scripts/backup.sh
+data/
+out/
+.backup/

@@ -1,0 +1,29 @@
+# Where jobs come from. `jobagent fetch` reads this.
+
+jsearch:
+  enabled: true
+  # Free plan: 200 requests/month, hard cap. Each query below = 1 request per page per run.
+  # 6 queries x 1 page x 22 weekdays = 132/month. Upgrade to Pro ($25, 10k) when supply proves out.
+  monthly_budget: 200
+  date_posted: 3days
+  num_pages: 1
+  under_3_years: true
+  queries:
+    - analytics engineer in United States
+    - analytics engineer dbt snowflake
+    - business intelligence engineer in United States
+    - data analyst sql dbt in United States
+    - bi analyst logistics OR energy OR freight
+    - data scientist analytics sql in United States
+
+ats:
+  enabled: true
+  companies_file: companies.csv   # slug,board  (board blank = resolve it)
+
+# Off by default. JobSpy scrapes LinkedIn/Indeed search pages directly, which both sites' terms ban,
+# and it would run from the Mac mini's home IP (your friend's connection). JSearch already returns
+# those same postings via Google for Jobs. Turn on only if JSearch supply runs short and you accept the risk.
+jobspy:
+  enabled: false
+  sites: [linkedin, indeed]
+  logged_in: false               # never true: a logged-in scrape puts your LinkedIn account at risk

@@ -1,0 +1,11 @@
+# Runs inside the worker container (TZ=America/New_York). supercronic logs every run to stdout.
+# Weekdays 7:00: fetch, filter, score, tailor 30, render, queue, morning push
+0 7 * * 1-5 jobagent run daily
+# Every 2 hours, 9:00 to 21:00: read Gmail, log replies, build interview kits
+0 9-21/2 * * * jobagent run inbox
+# Weekdays 19:00: evening digest (rejections bundled here)
+0 19 * * 1-5 jobagent notify --digest evening
+# Sundays 9:00: discover new companies, re-check which board each company uses
+0 9 * * 0 jobagent run discover
+# Nightly 23:30: copy data/ and out/ to the private data repo
+30 23 * * * /app/scripts/backup.sh

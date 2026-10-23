@@ -1,0 +1,16 @@
+# Sites the submitter never automates. Jobs on these go to the manual queue.
+# LinkedIn and Indeed ban automated applying in their terms; the rest are login walls or CAPTCHA-heavy.
+manual_only:
+  - linkedin.com          # User Agreement 8.2: no bots or automation; accounts get restricted
+  - indeed.com            # ToS: "Use of any automation ... to automate the Indeed Apply process ... is prohibited"
+  - myworkdayjobs.com     # account per employer, CAPTCHA
+  - icims.com
+  - taleo.net
+  - successfactors.com
+  - jobvite.com
+
+automatable:
+  - boards.greenhouse.io
+  - job-boards.greenhouse.io
+  - jobs.lever.co
+  - jobs.ashbyhq.com

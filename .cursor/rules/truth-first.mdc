@@ -1,0 +1,32 @@
+---
+description: No invented facts in any resume, cover letter, or form answer
+alwaysApply: true
+---
+
+# Truth first
+
+The fact bank is the only source of claims:
+`profile/work.yaml`, `profile/projects.yaml`, `profile/education.yaml`, `profile/opentug_brief.md`.
+
+- Reword freely. Never add a number, skill, tool, employer, title, or date that the cited fact does not contain.
+- Facts with `status: needs_review` are blocked until Harshal confirms them.
+- `claim: analyzed` facts use "analyzed," "traced," or "designed." Never "shipped" or "built."
+- `claim: co_shipped` facts say "with the team."
+- Project skills (PyTorch, Airflow) may appear in Projects and Skills. Never inside a work bullet.
+- Job titles come from `work.yaml` verbatim. OpenTug is "Data Scientist" on every packet, even for Analytics Engineer postings. The headline describes skills ("Analytics Engineering · dbt · Snowflake · Sigma"), never a job title.
+- Total experience is about 18 months. Never "3+ years," "senior," or "led a team."
+- Indus Novateur is not an employer. It never appears anywhere.
+- Never write customer names, voyage IDs, dollar amounts, schema names, or coworker names.
+- Visa, salary, location, and EEO answers come only from `profile/answers.yaml`. A `null` there means the job goes to the manual queue.
+
+```yaml
+# ❌ rejected: number and skill not in otug-ais
+- source: otug-ais
+  text: Trained a PyTorch model on 1B+ AIS records
+
+# ✅ accepted: reworded, same facts
+- source: otug-ais
+  text: Matched 97% of vessel dwells to known terminals using H3 geofences, built with the team
+```
+
+When Harshal shares a new fact, add it with the `add-fact` skill. Do not slip it straight into a packet.

@@ -1,0 +1,30 @@
+lanes: [A, B]                # A = Analytics Engineer, B = Data / BI Analyst
+max_years_required: 3        # 4+ dropped; 2-3 tagged stretch
+location: us_any             # remote, hybrid, or onsite anywhere in the US; relocation fine
+freshness_days: 14
+score_threshold: 70          # never lowered to hit the daily goal
+daily_goal: 30               # packets ready for you each weekday
+max_open_per_company: 2
+
+titles_include:
+  - analytics engineer
+  - bi engineer
+  - business intelligence engineer
+  - business intelligence analyst
+  - bi analyst
+  - data analyst
+  - analytics analyst
+  - data engineer
+
+titles_exclude:
+  - senior
+  - sr.
+  - staff
+  - principal
+  - lead
+  - manager
+  - director
+  - head of
+  - intern
+  - machine learning engineer
+  - research scientist

@@ -1,0 +1,74 @@
+name: jobagent
+
+x-app: &app
+  build:
+    context: .
+    dockerfile: docker/Dockerfile
+  image: jobagent:local
+  env_file:
+    - path: .env
+      required: false
+  volumes:
+    - ./:/app
+
+services:
+  # Scripts (the hands) on a schedule, plus the agent run step (the brain) once phase 4 lands.
+  worker:
+    <<: *app
+    command: ["supercronic", "/app/docker/crontab"]
+    depends_on:
+      - playwright
+    restart: unless-stopped
+
+  # Streamlit dashboard: Today / Pipeline / Replies / Setup / Learn. Local only.
+  dashboard:
+    <<: *app
+    command: ["jobagent", "dashboard"]
+    ports:
+      - "127.0.0.1:8501:8501"
+    profiles: ["dashboard"]
+    restart: unless-stopped
+
+  # Microsoft Playwright MCP: headless Chromium the agent drives to fill forms.
+  # Bound to localhost; never expose it, it is not a security boundary.
+  playwright:
+    image: mcr.microsoft.com/playwright/mcp:latest
+    # The image entrypoint already passes --headless --browser chromium --no-sandbox.
+    command:
+      - --isolated
+      - --port=8931
+      - --host=0.0.0.0
+      - --allowed-hosts=*
+      - --output-dir=/out
+    ports:
+      - "127.0.0.1:8931:8931"
+    volumes:
+      - ./out/browser:/out
+    restart: unless-stopped
+
+  # OpenWeb Ninja MCP (official): Glassdoor reviews/interviews, salary data, company news. Stdio only;
+  # Cursor starts it with `docker compose run`. Same key as JSearch. Version pinned: young package.
+  openwebninja:
+    image: node:22-slim
+    env_file:
+      - path: .env
+        required: false
+    entrypoint: ["npx", "-y", "@openwebninja/mcp-server@0.3.0"]
+    volumes:
+      - npm-cache:/root/.npm
+    profiles: ["research"]
+
+  # Gmail MCP (taylorwilsdon/google_workspace_mcp), read-only Gmail. Enabled in phase 5.
+  gmail:
+    build: https://github.com/taylorwilsdon/google_workspace_mcp.git
+    env_file:
+      - path: .env
+        required: false
+    command: ["--tools", "gmail", "--read-only", "--transport", "streamable-http"]
+    ports:
+      - "127.0.0.1:8000:8000"
+    profiles: ["inbox"]
+    restart: unless-stopped
+
+volumes:
+  npm-cache:

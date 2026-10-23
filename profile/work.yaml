@@ -1,0 +1,138 @@
+# Work fact bank. The only source for experience bullets.
+# status: confirmed = Harshal verified it; needs_review = drafted from old resumes, the validator blocks it until confirmed.
+# claim: shipped = merged to master; co_shipped = merged with teammates; analyzed = real work, not merged.
+# evidence: OpenTug PRs are OpenTug/ATDS numbers. See opentug_brief.md for the full story behind each one.
+
+experience:
+  - id: otug
+    company: OpenTug
+    title: Data Scientist
+    title_status: confirmed   # official HR title, confirmed by Harshal 2026-10-22. Never change it per posting.
+    location: Boston, MA
+    start: 2025-10
+    end: present
+    bullets:
+      - id: otug-ci
+        text: Cut dbt pull-request CI from about 32 minutes to about 6 with a nightly full build, a cached manifest, and slim state:modified+ rebuilds of only what changed
+        skills: [dbt, Snowflake, GitHub Actions, SQLFluff, CI]
+        numbers: ["32", "6"]
+        claim: shipped
+        status: confirmed
+        evidence: [ATDS#8993, ATDS#9095]
+
+      - id: otug-voyage-table
+        text: Designed a customer-facing voyage table at one-row-per-voyage grain, served to Sigma and a Snowflake semantic view with row-access policies so each customer sees only their own voyages
+        skills: [dbt, Snowflake, Sigma, SQL, dimensional modeling, row-level security, semantic layer]
+        numbers: []
+        claim: shipped
+        status: confirmed
+        evidence: [ATDS#9349, ATDS#9400, ATDS#10000, ATDS#10329]
+
+      - id: otug-clocks
+        text: Built voyage clocks from crew event logs (hose, tankerman, inspector, fleeting, idle, port wait from notice of readiness to dock), pairing events per barge and merging overlaps so a two-barge tow is not double-counted
+        skills: [SQL, dbt, window functions, event modeling, dbt unit tests]
+        numbers: []
+        claim: shipped
+        status: confirmed
+        evidence: [ATDS#9871, ATDS#9980, ATDS#9818, ATDS#9901, ATDS#10093, ATDS#10352]
+
+      - id: otug-money
+        text: Added estimates, invoices, fuel purchases, and allocated charges to the voyage table, keeping quotes and bills in separate columns so a savings metric cannot quietly compare a quote to itself
+        skills: [SQL, dbt, Snowflake, Sigma, metric definitions, financial reconciliation]
+        numbers: []
+        claim: shipped
+        status: confirmed
+        evidence: [ATDS#10329, ATDS#10413, ATDS#10657, ATDS#10702, ATDS#10703]
+
+      - id: otug-util
+        text: Defined time-charter utilization as productive time over hire time across 9 dbt models and 18 tests, and documented why dropping unscored empty voyages from the average flatters the fleet
+        skills: [dbt, SQL, metric definitions, data tests]
+        numbers: ["9", "18"]
+        claim: shipped
+        status: confirmed
+        evidence: [ATDS#10741]
+
+      - id: otug-operator
+        text: Shipped an operator KPI pack for a petroleum barge operator (laden and empty transit, dock delay, pump rate, remaining on board, deadfreight, ancillary charges, standby), each with a declared grain and a dbt test
+        skills: [dbt, SQL, Sigma, KPI design, data tests]
+        numbers: []
+        claim: shipped
+        status: confirmed
+        evidence: [ATDS#10838, ATDS#10995, ATDS#10998, ATDS#10971, ATDS#11020, ATDS#10717, ATDS#10790]
+
+      - id: otug-ais
+        text: Built AIS movement and dwell models with the team, using H3 geofences to detect pickups and drop-offs and gating commodity labels by carrier type and terminal; matched 97% of dwells to known infrastructure
+        skills: [dbt, Snowflake, SQL, H3, geospatial, AIS]
+        numbers: ["97%"]
+        claim: co_shipped
+        status: confirmed
+        evidence: [ATDS#7572, ATDS#7855, ATDS#8084, ATDS#8289]
+
+      - id: otug-ingest
+        text: Built Python and Django parsers that turn carrier emails, Excel workbooks, HTML boat logs, and PDF attachments into voyage updates, with guards so a duplicate email or a bad completion cannot corrupt a live order
+        skills: [Python, Django, BAML, document AI, idempotency]
+        numbers: []
+        claim: shipped
+        status: confirmed
+        evidence: [ATDS#6445, ATDS#6440, ATDS#6737, ATDS#6899, ATDS#6858, ATDS#6976]
+
+      - id: otug-score
+        text: Wrote a point-based confidence score for which commodity a voyage carried, using tow size, visit length, horsepower, and route fit, with gates that can zero the score so it stays auditable on a single voyage
+        skills: [SQL, dbt, heuristic scoring]
+        numbers: []
+        claim: shipped
+        status: confirmed
+        evidence: [ATDS#9210]
+
+      - id: otug-recon
+        text: Traced a dollars-per-barrel gap between an estimate chart and a billed chart to a product-desk label and to charges stored on the row but excluded from the sum, and fixed the definition before building new models
+        skills: [SQL, Sigma, financial reconciliation, metric definitions]
+        numbers: []
+        claim: analyzed
+        status: confirmed
+        evidence: [analysis, see opentug_brief.md chapter 4]
+
+      - id: otug-volume
+        text: Merged 64 pull requests in 12 months across ingestion, warehouse models, CI, and BI serving
+        skills: []
+        numbers: ["64", "12"]
+        claim: shipped
+        status: confirmed
+        evidence: [gh pr list --repo OpenTug/ATDS --author Harshal12355 --state merged]
+
+  - id: cts
+    company: C The Signs
+    title: Data Scientist Intern
+    title_status: needs_review   # old resumes say both "Data Scientist" and "Data Scientist Intern"
+    location: Boston, MA
+    start: 2024-01
+    end: 2024-06
+    bullets:
+      - id: cts-dbt
+        text: Built dbt and Snowflake transformations over 95M+ electronic health records, turning sparse, irregular patient histories into analysis-ready temporal features
+        skills: [dbt, Snowflake, SQL, Python]
+        numbers: ["95M+"]
+        claim: shipped
+        status: confirmed   # 95M confirmed by Harshal 2026-10-22; tools appear in every prior resume version
+        evidence: [self-reported]
+
+      - id: cts-viz
+        text: Built Tableau and SQL reports that summarized model results for leadership
+        skills: [Tableau, SQL]
+        numbers: []
+        claim: shipped
+        status: needs_review
+        evidence: [self-reported]
+
+      # F1 is left out on purpose. Prior resumes say "F1 +30-40%", "F1 0.70", and "recall +40%".
+      # Add a bullet here only once Harshal confirms which one is true.
+
+  - id: neu-ta
+    company: Northeastern University
+    title: Graduate Teaching Assistant, Generative AI
+    title_status: needs_review
+    location: Boston, MA
+    start: 2023-09
+    end: 2024-12
+    part_time: true
+    bullets: []
